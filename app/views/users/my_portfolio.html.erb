@@ -15,5 +15,10 @@
     </div>
   <% end %>
 </div>
+
 <%= turbo_frame_tag "result_frame" do %>
+<% end %>
+
+<% if !@tracked_stocks.empty? %>
+  <%= render 'stocks/list' %>
 <% end %>
