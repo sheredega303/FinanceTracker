@@ -16,9 +16,9 @@
   <br>
   <div class="container">
     <%= turbo_frame_tag 'flash' do %>
-    <div id="messages">
-      <%= render 'layouts/messages' %>
-    </div>
+      <div id="messages">
+        <%= render 'layouts/messages' %>
+      </div>
     <% end %>
     <%= yield %>
   </div>

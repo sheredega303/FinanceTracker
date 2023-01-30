@@ -19,6 +19,7 @@
 <%= turbo_frame_tag "result_frame" do %>
 <% end %>
 
-<% if !@tracked_stocks.empty? %>
+<%= turbo_frame_tag "portfolio_stocks" do %>
   <%= render 'stocks/list' %>
 <% end %>
+
