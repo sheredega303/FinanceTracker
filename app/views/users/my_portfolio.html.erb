@@ -2,25 +2,18 @@
 
 <div class="search-area">
   <h3>Search Stocks</h3>
-  <%#= form_tag search_stock_path, data: {turbo: false}, remote: true, method: :get do %>
-  <%= form_with(url: search_stock_path, :format => :js, method: :get) do |f| %>
+  <%= form_tag search_stock_path, method: :get, data: {turbo_frame: "result_frame"} do %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-padding">
         <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-large"%>
       </div>
       <div class="col-sm-3 no-left-padding">
-        <%#= button_tag type: :submit, class: "btn btn-success" do %>
-        <%= f.submit "Submit" %>
-          <%#= fa_icon 'search 1.5x' %>
-        <%# end %>
+        <%= button_tag type: :submit, class: "btn btn-success" do %>
+          <%= fa_icon 'search 1.5x' %>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
-<%#= render 'users/result' %>
-<!--<div id="result">-->
-
-<!--</div>-->
-
-
-
+<%= turbo_frame_tag "result_frame" do %>
+<% end %>

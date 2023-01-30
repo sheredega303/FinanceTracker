@@ -108,6 +108,7 @@
     <orderEntry type="library" scope="PROVIDED" name="redis (v4.8.0, RVM: ruby-3.2.0 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.6.2, RVM: ruby-3.2.0 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.3.2, RVM: ruby-3.2.0 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="requestjs-rails (v0.0.10, RVM: ruby-3.2.0 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.0.1, RVM: ruby-3.2.0 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.5, RVM: ruby-3.2.0 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v2.3.2, RVM: ruby-3.2.0 [global]) [gem]" level="application" />
@@ -414,6 +415,17 @@
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl description="Prints out your Rack middleware stack" fullCommand="middleware" id="middleware" />
+          <RakeTaskImpl id="requestjs">
+            <subtasks>
+              <RakeTaskImpl description="Install Request.JS into the app" fullCommand="requestjs:install" id="install" />
+              <RakeTaskImpl id="install">
+                <subtasks>
+                  <RakeTaskImpl description="Install Request.JS on the app with the asset pipeline" fullCommand="requestjs:install:asset_pipeline" id="asset_pipeline" />
+                  <RakeTaskImpl description="Install Request.JS on the app with webpacker" fullCommand="requestjs:install:webpacker" id="webpacker" />
+                </subtasks>
+              </RakeTaskImpl>
+            </subtasks>
+          </RakeTaskImpl>
           <RakeTaskImpl description="Restart app by touching tmp/restart.txt" fullCommand="restart" id="restart" />
           <RakeTaskImpl description="Generate a cryptographically secure secret key (this is typically used to generate a secret for cookie sessions)" fullCommand="secret" id="secret" />
           <RakeTaskImpl description="Report code statistics (KLOCs, etc) from the application or engine" fullCommand="stats" id="stats" />

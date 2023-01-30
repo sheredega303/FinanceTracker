@@ -15,7 +15,11 @@
   <%= render 'layouts/navigation' %>
   <br>
   <div class="container">
-    <%= render 'layouts/messages' %>
+    <%= turbo_frame_tag 'flash' do %>
+    <div id="messages">
+      <%= render 'layouts/messages' %>
+    </div>
+    <% end %>
     <%= yield %>
   </div>
   </body>
