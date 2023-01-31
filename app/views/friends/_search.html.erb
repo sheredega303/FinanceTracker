@@ -1,0 +1,16 @@
+<% if @new_friends %>
+  <% @new_friends.each do |friend| %>
+    <div class="card card-header results-block">
+      <strong>Name: </strong> <%= friend.full_name %> <br>
+      <strong>Email: </strong> <%= friend.email %> <br>
+      <div class="row g-2">
+        <%= link_to 'View Profile', user_path(friend), class: 'btn btn-xs btn-success'%>
+        <% if current_user.not_friends_with?(friend.id) %>
+          <%= link_to 'Follow friend', friendships_path(friend: friend, search: @new_friends), class: "btn btn-xs btn-success", data: { "turbo-method": :post } %>
+        <% else %>
+          <button type="button" class="btn btn-secondary" disabled>You are friends</button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

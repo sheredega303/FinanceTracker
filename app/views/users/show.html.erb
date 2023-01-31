@@ -1,0 +1,24 @@
+<h2>User Details</h2>
+
+<strong>Name: </strong> <%= @user.full_name %> <br>
+<strong>Email: </strong> <%= @user.email %> <br>
+<div class="row col-2">
+  <% if current_user.not_friends_with?(@user.id) %>
+    <%= link_to 'Follow friend', friendships_path(friend: @user, search: @new_friends, show: true), class: "btn btn-xs btn-success", data: { "turbo-method": :post } %>
+  <% else %>
+    <button type="button" class="btn btn-secondary" disabled>You are friends</button>
+  <% end %>
+</div>
+<br>
+<% if @tracked_stocks.empty? %>
+  <p class="lead">This user is not tracking any stocks</p>
+<% else %>
+  <%= render 'stocks/list' %>
+<% end %>
+
+
+
+
+
+
+
