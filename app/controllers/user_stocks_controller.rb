@@ -13,4 +13,15 @@ class UserStocksController < ApplicationController
               turbo_stream.update("portfolio_stocks", partial: "stocks/list"),
               turbo_stream.update("result_frame", html: " ")]
   end
+
+  def destroy
+    stock = Stock.find(params[:id])
+    user_stock =  UserStock.where(user_id: current_user.id, stock_id: stock.id).first
+    user_stock.destroy
+    @tracked_stocks = current_user.stocks
+    flash.now[:notice] = "#{stock.ticker} was successfully removed from portfolio"
+    render turbo_stream:
+             [turbo_stream.update("flash", partial: "layouts/messages"),
+              turbo_stream.update("portfolio_stocks", partial: "stocks/list")]
+  end
 end
